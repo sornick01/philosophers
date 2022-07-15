@@ -28,6 +28,8 @@ int	try_init_philos(t_table *table)
 	while (i < table->philos_num)
 	{
 		table->philos[i] = (t_philo *)malloc(sizeof(t_philo));
+			if (!table->philos[i])
+				return (0);
 		table->philos[i]->id = i;
 		table->philos[i]->left_id = i;
 		table->philos[i]->right_id = (i + 1) % (table->philos_num);
@@ -65,10 +67,10 @@ int	try_init_table(int argc, char **argv, t_table *table)
 		return (0);
 	if (argc != 5 && argc != 6)
 		return (0);
-	table = (t_table *)malloc(sizeof(t_table));
 	if (!table)
 		return (0);
 	table->philos_num = ft_atoi(argv[1]);
+	printf("ft_atoi(argv[1]) = %d\n", table->philos_num);
 	table->time_to_die = ft_atoi(argv[2]);
 	table->time_to_eat = ft_atoi(argv[3]);
 	table->time_to_sleep = ft_atoi(argv[4]);
@@ -77,7 +79,7 @@ int	try_init_table(int argc, char **argv, t_table *table)
 	else
 		table->max_times_to_eat = -1;
 	table->alive = 1;
-	if (pthread_mutex_init(&table->msg_message, NULL) != 0)
+	if (pthread_mutex_init(&table->msg_mutex, NULL) != 0)
 		return(0);
 	if (!try_init_philos(table))
 		return (0);

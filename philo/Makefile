@@ -18,11 +18,11 @@ VPATH = $(SRC_DIR)
 all:				$(NAME)
 
 $(NAME):			$(INC)  $(OBJ)
-					$(CC) $(CFLAGS) $(OBJ) -o $(NAME)
+					$(CC) $(CFLAGS) $(OBJ) -pthread -o $(NAME)
 
 $(OBJ_DIR)%.o: %.c $(INC)
 					mkdir -p $(OBJ_DIR)
-					$(CC) $(CFLAGS) -c $< -o $@
+					$(CC) $(CFLAGS) -pthread -c $< -o $@
 
 clean:
 					$(RM) $(OBJ_DIR)

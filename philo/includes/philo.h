@@ -31,13 +31,14 @@ typedef struct s_table
 	int				alive;
 	t_philo			**philos;
 	pthread_mutex_t	*forks;
-	pthread_mutex_t	msg_message;
+	pthread_mutex_t	msg_mutex;
 }	t_table;
 
 int		ft_atoi(const char *str);
 int		ft_isnumber(const char *str);
 int		try_init_table(int argc, char **argv, t_table *table);
 void	philo_start(t_table *table);
+void	deallocate_memory(t_table *table);
 // int		try_start_philo_threads(t_table *table) //замени
 
 
