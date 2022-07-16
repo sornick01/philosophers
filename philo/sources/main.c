@@ -4,7 +4,6 @@ int main(int argc, char **argv)
 {
 	t_table table;
 
-
 	// void	*a = NULL;
 	if (!try_init_table(argc, argv, &table))
 		printf("huynya\n");
@@ -17,7 +16,13 @@ int main(int argc, char **argv)
 		// {
 		// 	pthread_join(table.philos[table.philos_num - 1]->routine_thread, NULL);
 		// }
-		usleep(3000000);
-		deallocate_memory(&table);
+		// usleep(3000000);	
+		// deallocate_memory(&table);
+		while (1)
+		{
+			/* code */
+		}
+		
 	}
+	curr_time();
 }

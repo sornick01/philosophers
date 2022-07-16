@@ -1,16 +1,16 @@
 #include "../includes/philo.h"
 
-void	*philo_routine(void	*args)
-{
-	t_philo	*philo = (t_philo *)args;
-	pthread_mutex_lock(&(philo->table_info->msg_mutex));
-	for (int i = 0; i < 10; i++)
-	{
-		printf("i am philo %d %d\n", philo->id, i);
-	}
-	pthread_mutex_unlock(&(philo->table_info->msg_mutex));
-	return (NULL);
-}
+// void	*philo_routine(void	*args)
+// {
+// 	t_philo	*philo = (t_philo *)args;
+// 	pthread_mutex_lock(&(philo->table_info->msg_mutex));
+// 	for (int i = 0; i < 10; i++)
+// 	{
+// 		printf("i am philo %d %d\n", philo->id, i);
+// 	}
+// 	pthread_mutex_unlock(&(philo->table_info->msg_mutex));
+// 	return (NULL);
+// }
 
 int	try_start_philo_threads(t_table *table)
 {
@@ -19,10 +19,12 @@ int	try_start_philo_threads(t_table *table)
 	i = 0;
 	printf("%d\n", table->philos_num);
 	printf("ok, lets try to start threads\n");
+	table->start_time = curr_time();
 	while (i < table->philos_num)
 	{
 		// printf("try %d\n", i);
-		if (pthread_create(&table->philos[i]->routine_thread, NULL, (void *)&philo_routine, (void *)table->philos[i]) != 0)
+		if (pthread_create(&table->philos[i]->routine_thread, NULL,
+				(void *)&philo_routines, (void *)table->philos[i]) != 0)
 		{
 			printf("pizdez\n");
 			return (0);
